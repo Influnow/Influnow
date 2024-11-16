@@ -314,22 +314,25 @@
         background: linear-gradient(to right, #e03e3e, #e55353);
     }
     /* Estilos para móviles */
+/* Estilos para móviles */
 @media (max-width: 768px) {
 
-/* Ocultar el menú original y mostrar el botón hamburguesa */
-nav .menu {
-    display: none;
+/* ... (otros estilos existentes) ... */
+
+/* Estilos para los enlaces del menú en móviles */
+.menu li {
+    margin: 0;
+    width: 100%;
 }
 
-.menu-toggle {
+.menu li a {
     display: block;
-    position: absolute;
-    top: 25px;
-    right: 20px;
-    font-size: 1.8em;
-    cursor: pointer;
+    padding: 10px 15px; /* Reducir padding */
+    border-bottom: 1px solid #ddd;
+    background: none;
     color: #333;
-    z-index: 1001; /* Asegura que esté por encima de otros elementos */
+    text-align: left;
+    font-size: 16px; /* Ajustar tamaño de fuente */
 }
 
 /* Estilo del menú desplegable lateral */
