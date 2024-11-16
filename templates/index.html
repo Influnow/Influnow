@@ -313,50 +313,50 @@
     .decline-btn:hover {
         background: linear-gradient(to right, #e03e3e, #e55353);
     }
-    /* Estilos para móviles */
+
 /* Estilos para móviles */
 @media (max-width: 768px) {
 
-/* ... (otros estilos existentes) ... */
-
-/* Estilos para los enlaces del menú en móviles */
-.menu li {
-    margin: 0;
-    width: 100%;
+/* Ocultar el menú original y mostrar el botón hamburguesa */
+nav .menu {
+    display: none;
 }
 
-.menu li a {
+.menu-toggle {
     display: block;
-    padding: 10px 15px; /* Reducir padding */
-    border-bottom: 1px solid #ddd;
-    background: none;
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    font-size: 1.8em;
+    cursor: pointer;
     color: #333;
-    text-align: left;
-    font-size: 16px; /* Ajustar tamaño de fuente */
+    z-index: 1001;
 }
 
 /* Estilo del menú desplegable lateral */
-.menu.active {
-    display: flex;
-    flex-direction: column;
-    background-color: #ffffff;
+.menu {
+    /* Oculto por defecto */
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
     position: fixed;
     top: 0;
     left: 0;
     width: 70%;
     max-width: 250px;
-    height: 100%;
+    height: auto; /* Ajustar la altura automáticamente */
+    max-height: 100vh; /* No exceder la altura de la pantalla */
+    background-color: #ffffff;
     overflow-y: auto;
-    transition: transform 0.3s ease;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
     padding-top: 60px;
-    transform: translateX(-100%); /* Oculto por defecto */
-    z-index: 1000; /* Asegura que esté por encima del contenido */
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    z-index: 1000;
 }
 
 /* Mostrar el menú cuando está activo */
 .menu.active {
-    transform: translateX(0); /* Visible cuando está activo */
+    display: flex;
+    flex-direction: column;
+    transform: translateX(0);
 }
 
 /* Estilos para los enlaces del menú en móviles */
@@ -367,11 +367,12 @@
 
 .menu li a {
     display: block;
-    padding: 15px;
+    padding: 10px 15px; /* Reducir padding para hacer las celdas más pequeñas */
     border-bottom: 1px solid #ddd;
     background: none;
     color: #333;
     text-align: left;
+    font-size: 16px; /* Ajustar tamaño de fuente */
 }
 
 /* Ajustes al header */
