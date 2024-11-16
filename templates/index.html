@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <title>Influnet</title>
+    <title>Influnow</title>
     
     <style>
         body {
@@ -313,6 +313,76 @@
     .decline-btn:hover {
         background: linear-gradient(to right, #e03e3e, #e55353);
     }
+    /* Estilos para móviles */
+@media (max-width: 768px) {
+
+/* Ocultar el menú original y mostrar el botón hamburguesa */
+nav .menu {
+    display: none;
+}
+
+.menu-toggle {
+    display: block;
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    font-size: 1.8em;
+    cursor: pointer;
+    color: #333;
+    z-index: 1001; /* Asegura que esté por encima de otros elementos */
+}
+
+/* Estilo del menú desplegable lateral */
+.menu.active {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 70%;
+    max-width: 250px;
+    height: 100%;
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    padding-top: 60px;
+    transform: translateX(-100%); /* Oculto por defecto */
+    z-index: 1000; /* Asegura que esté por encima del contenido */
+}
+
+/* Mostrar el menú cuando está activo */
+.menu.active {
+    transform: translateX(0); /* Visible cuando está activo */
+}
+
+/* Estilos para los enlaces del menú en móviles */
+.menu li {
+    margin: 0;
+    width: 100%;
+}
+
+.menu li a {
+    display: block;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    background: none;
+    color: #333;
+    text-align: left;
+}
+
+/* Ajustes al header */
+header {
+    position: relative;
+}
+
+/* Ajustes para el logo en móviles */
+.logo {
+    width: 120px;
+    margin-left: 20px;
+}
+}
+
         
     </style>
 </head>
@@ -320,7 +390,12 @@
     <header>
         <img src="{{ url_for('static', filename='logo_influnet.jpg') }}" alt="Logo" class="logo">
         <nav>
-            <ul class="menu">
+            <!-- Botón de menú hamburguesa para móviles -->
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <!-- Menú de navegación -->
+            <ul class="menu" id="menu">
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#estrategia-de-crecimiento">Crecimiento</a></li>
                 <li><a href="#marcas">Marcas</a></li>
@@ -478,5 +553,25 @@
             });
         });
     </script>
+    <script>
+        // JavaScript para manejar el menú desplegable en móviles
+        document.addEventListener("DOMContentLoaded", function() {
+            var menuToggle = document.getElementById("menu-toggle");
+            var menu = document.getElementById("menu");
+    
+            menuToggle.addEventListener("click", function() {
+                menu.classList.toggle("active");
+            });
+    
+            // Cerrar el menú al hacer clic en un enlace
+            var menuLinks = menu.querySelectorAll("a");
+            menuLinks.forEach(function(link) {
+                link.addEventListener("click", function() {
+                    menu.classList.remove("active");
+                });
+            });
+        });
+    </script>
+    
 </body>
 </html>
