@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import os
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_bcrypt import Bcrypt
@@ -509,7 +509,6 @@ if __name__ == '__main__':
 
 
 
-=======
 import os
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_bcrypt import Bcrypt
@@ -1020,4 +1019,3 @@ if __name__ == '__main__':
 
 
 
->>>>>>> e744c4f819a1f3e70f49504c9a12526cc6f697f6
