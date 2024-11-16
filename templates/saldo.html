@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saldo - Influnet</title>
+    <title>Saldo - Influnow</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
-            color: #333;
+            background-color: #ffffff;
+            color: #666565;
             margin: 0;
             padding: 0;
             display: flex;
@@ -31,28 +31,31 @@
         /* Barra de navegación - Panel de Control */
         .bottom-buttons {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             width: 100%;
             max-width: 500px;
             margin-top: 20px; /* Espacio debajo del logo */
             padding: 10px;
             background: linear-gradient(135deg, #00bfff, #1a73e8); /* Degradado igual al botón de ayuda */
             border-radius: 10px;
+            flex-wrap: nowrap; /* Asegura que siempre esté en una sola línea */
         }
 
         .bottom-buttons a {
             text-align: center;
             padding: 10px;
-            width: 33%;
+            flex: 1;
             color: white;
             text-decoration: none;
             background-color: transparent;
             border-radius: 5px;
             transition: background-color 0.3s;
+            margin: 0 5px; /* Espaciado entre botones */
+            white-space: nowrap; /* Previene que el texto se quiebre */
         }
 
         .bottom-buttons a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(179, 69, 69, 0.2);
         }
 
         /* Contenedor principal */
@@ -60,7 +63,7 @@
             width: 90%;
             max-width: 600px;
             margin-top: 40px;
-            background-color: #ffffff;
+            background-color: #a1c9f8;
             border-radius: 15px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             padding: 20px;
@@ -71,7 +74,7 @@
         .credit-card {
             width: 100%;
             max-width: 400px;
-            height: 220px;
+            aspect-ratio: 16 / 9; /* Para mantener la proporción de la tarjeta de crédito */
             background: linear-gradient(135deg, #ffffff 50%, #00bfff 50%);
             border-radius: 15px;
             padding: 20px;
@@ -93,7 +96,7 @@
         }
 
         .credit-card .logo img {
-            width: 100px; /* Tamaño del logo más grande */
+            width: 80px; /* Tamaño del logo dentro de la tarjeta */
         }
 
         .credit-card .balance {
@@ -101,12 +104,6 @@
             color: #ffffff;
             font-weight: bold;
             margin-bottom: 20px; /* Mueve el saldo hacia la parte inferior */
-        }
-
-        .credit-card .details {
-            color: #ffffff;
-            font-size: 18px;
-            margin-bottom: 20px;
         }
 
         /* Barra de progreso */
@@ -154,13 +151,6 @@
             border-radius: 10px;
             margin-bottom: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .tasks-list ul li span {
-            color: #1a73e8;
-            font-weight: bold;
         }
 
         /* Encabezado de pie de página */
@@ -177,6 +167,46 @@
         .footer a {
             color: #00bfff;
             text-decoration: none;
+        }
+
+        /* Ajustes para dispositivos móviles */
+        @media (max-width: 768px) {
+            .bottom-buttons {
+                width: 95%;
+                max-width: 100%;
+                margin: 0 auto;
+                gap: 5px;
+            }
+
+            .credit-card {
+                aspect-ratio: 16 / 9;
+                max-width: 300px;
+            }
+
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+
+            .logo img {
+                width: 120px;
+            }
+
+            .credit-card .logo img {
+                width: 60px;
+            }
+
+            .credit-card .balance {
+                font-size: 28px;
+            }
+
+            .tasks-list h3 {
+                font-size: 16px;
+            }
+
+            .tasks-list ul li {
+                padding: 8px;
+            }
         }
     </style>
 </head>

@@ -4,39 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Representa Marcas en TikTok</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #ffffff; /* Fondo blanco */
+            background-color: #ffffff;
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            position: relative;
         }
-
+    
         h1 {
             margin-top: 20px;
             color: #333;
+            text-align: center;
+            font-size: 24px;
         }
-
+    
         .logo {
-            margin-top: 20px;
+            margin-top: 10px;
         }
-
+    
         .logo img {
-            width: 150px;
+            width: 120px;  /* Hacer el logo un poco más grande para que destaque */
         }
-
+    
         .container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-gap: 20px;
-            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;  /* Centrar el contenido */
+            gap: 20px;
+            width: calc(100% - 40px);  /* Añadir márgenes uniformes a los lados */
+            max-width: 600px;
             margin-top: 20px;
+            padding: 0 10px;  /* Asegura espacio adicional */
+            box-sizing: border-box; /* Asegura que el padding no exceda el ancho */
         }
-
+    
         .cell {
             display: flex;
             flex-direction: column;
@@ -44,18 +50,24 @@
             align-items: center;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             text-align: center;
-            position: relative;
             background-color: #f5f5f5;
+            transition: transform 0.2s ease;
+            width: 100%;  /* Asegura que cada celda ocupe todo el ancho disponible */
+            max-width: 500px; /* Límite máximo para evitar que se vean demasiado grandes en pantallas grandes */
         }
-
+    
+        .cell:hover {
+            transform: scale(1.02);
+        }
+    
         .unlocked {
-            background-color: #e0f7fa; /* Azul muy claro para un toque elegante */
+            background-color: #e0f7fa;
         }
-
+    
         .reward {
-            background-color: #ffe082; /* Amarillo claro y elegante */
+            background-color: #ffe082;
             color: #333;
             padding: 5px 10px;
             border-radius: 5px;
@@ -63,19 +75,19 @@
             font-weight: bold;
             margin-top: 10px;
         }
-
+    
         .locked {
             background-color: #e0e0e0;
             color: #999;
         }
-
+    
         .cell img {
-            width: 50px;
+            width: 40px;
             margin-bottom: 10px;
         }
-
+    
         .cell button {
-            background-color: #007BFF; /* Color azul moderado para el botón */
+            background-color: #007BFF;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -85,37 +97,29 @@
             font-size: 16px;
             font-weight: bold;
             transition: background-color 0.3s, transform 0.3s;
+            width: 100%;
+            max-width: 200px;
         }
-
+    
         .cell button:hover {
-            background-color: #0056b3; /* Color más intenso al pasar el ratón */
-            transform: scale(1.05); /* Efecto de zoom */
+            background-color: #0056b3;
+            transform: scale(1.05);
         }
-
+    
         .locked img {
             filter: grayscale(100%);
         }
-
+    
         .locked button {
             background-color: #999;
             cursor: not-allowed;
         }
-
+    
         .emoticon {
             font-size: 2em;
             margin-bottom: 10px;
         }
-
-        /* Adorno lateral con los colores del logo */
-        .sidebar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 20px;
-            height: 100%;
-            background: linear-gradient(to bottom, #000000, #007BFF, #FF6347); /* Negro, azul y rojo */
-        }
-
+    
         /* Encabezado inferior */
         footer {
             margin-top: 40px;
@@ -126,43 +130,64 @@
             text-align: center;
             font-size: 14px;
         }
-
+    
         footer a {
             color: #00bfff;
             text-decoration: none;
         }
-         /* Estilos para dispositivos móviles */
-         @media (max-width: 768px) {
-            /* Cambiar a 2 columnas en pantallas medianas */
+    
+        /* Estilos para dispositivos móviles */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 20px;
+            }
+    
+            .logo img {
+                width: 140px;  /* Aumentar el tamaño del logo un poco más para dispositivos móviles */
+            }
+    
+            .cell button {
+                font-size: 14px;
+                padding: 8px 15px;
+            }
+    
             .container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .cell {
-                position: relative;
-            }
-
-            .cell::before {
-                content: '';
-                display: block;
-                padding-top: 100%; /* Hace que la altura sea igual al ancho */
-            }
-
-            .cell > * {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+                width: calc(100% - 30px);  /* Un poco más de margen a los lados */
+                gap: 15px;
+                padding: 0 15px;
             }
         }
-
+    
         @media (max-width: 480px) {
-            /* Cambiar a 1 columna en pantallas pequeñas */
+            h1 {
+                font-size: 18px;
+            }
+    
+            .logo img {
+                width: 150px;  /* Aumentar más el tamaño del logo para móviles pequeños */
+            }
+    
+            .cell {
+                padding: 15px;
+            }
+    
+            .cell button {
+                font-size: 13px;
+                padding: 7px 10px;
+            }
+    
             .container {
-                grid-template-columns: repeat(1, 1fr);
+                width: calc(100% - 20px);  /* Márgenes uniformes para respetar los bordes */
+                gap: 10px;
+                padding: 0 10px;
             }
         }
     </style>
+    
+    
+    
+
+    
 </head>
 <body>
 
