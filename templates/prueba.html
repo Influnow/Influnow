@@ -1,0 +1,231 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participaciones Recientes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .navbar {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .section-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            padding: 10px;
+            border-radius: 20px 0 0 20px;
+            border: 1px solid #ccc;
+            width: 80%;
+        }
+        .search-bar button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            border-radius: 0 20px 20px 0;
+        }
+        .participacion-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+        .participacion-item h4 {
+            margin: 0;
+            color: #007BFF;
+        }
+        .participacion-item p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <h1>Participaciones Recientes</h1>
+    <a href="{{ url_for('supervision') }}" class="profile-button" style="color: white;">Volver a Supervisión</a>
+</div>
+
+<div class="section-container">
+    <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Buscar por actividad o usuario...">
+        <button onclick="searchParticipaciones()">
+            🔍
+        </button>
+    </div>
+
+    
+    <h3>Participaciones de Usuarios</h3>
+    <ul id="participaciones-list">
+        {% for participacion in participaciones %}
+            <li class="participacion-item">
+                <h4>Usuario ID: {{ participacion.user_id }}</h4>
+                <p><strong>Corte de Borja:</strong> {{ participacion.participacion_uno or "No ha participado" }}</p>
+                <p><strong>Vuela Libre:</strong> {{ participacion.participacion_dos or "No ha participado" }}</p>
+                <p><strong>Productores Loite:</strong> {{ participacion.participacion_tres or "No ha participado" }}</p>
+            </li>
+        {% else %}
+            <li>No hay participaciones registradas aún.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+    function searchParticipaciones() {
+        const input = document.getElementById("search-input").value.toLowerCase();
+        const participaciones = document.querySelectorAll(".participacion-item");
+
+        participaciones.forEach(participacion => {
+            const actividad = participacion.querySelector("p:nth-of-type(1)").textContent.toLowerCase();
+            const usuario = participacion.querySelector("h4").textContent.toLowerCase();
+            
+            if (actividad.includes(input) || usuario.includes(input)) {
+                participacion.style.display = "";
+            } else {
+                participacion.style.display = "none";
+            }
+        });
+    }
+
+    document.getElementById("search-input").addEventListener("keyup", searchParticipaciones);
+</script>
+
+</body>
+</html>
+=======
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participaciones Recientes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .navbar {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .section-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            padding: 10px;
+            border-radius: 20px 0 0 20px;
+            border: 1px solid #ccc;
+            width: 80%;
+        }
+        .search-bar button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            border-radius: 0 20px 20px 0;
+        }
+        .participacion-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+        .participacion-item h4 {
+            margin: 0;
+            color: #007BFF;
+        }
+        .participacion-item p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <h1>Participaciones Recientes</h1>
+    <a href="{{ url_for('supervision') }}" class="profile-button" style="color: white;">Volver a Supervisión</a>
+</div>
+
+<div class="section-container">
+    <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Buscar por actividad o usuario...">
+        <button onclick="searchParticipaciones()">
+            🔍
+        </button>
+    </div>
+
+    
+    <h3>Participaciones de Usuarios</h3>
+    <ul id="participaciones-list">
+        {% for participacion in participaciones %}
+            <li class="participacion-item">
+                <h4>Usuario ID: {{ participacion.user_id }}</h4>
+                <p><strong>Corte de Borja:</strong> {{ participacion.participacion_uno or "No ha participado" }}</p>
+                <p><strong>Vuela Libre:</strong> {{ participacion.participacion_dos or "No ha participado" }}</p>
+                <p><strong>Productores Loite:</strong> {{ participacion.participacion_tres or "No ha participado" }}</p>
+            </li>
+        {% else %}
+            <li>No hay participaciones registradas aún.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+    function searchParticipaciones() {
+        const input = document.getElementById("search-input").value.toLowerCase();
+        const participaciones = document.querySelectorAll(".participacion-item");
+
+        participaciones.forEach(participacion => {
+            const actividad = participacion.querySelector("p:nth-of-type(1)").textContent.toLowerCase();
+            const usuario = participacion.querySelector("h4").textContent.toLowerCase();
+            
+            if (actividad.includes(input) || usuario.includes(input)) {
+                participacion.style.display = "";
+            } else {
+                participacion.style.display = "none";
+            }
+        });
+    }
+
+    document.getElementById("search-input").addEventListener("keyup", searchParticipaciones);
+</script>
+
+</body>
+</html>
+>>>>>>> e744c4f819a1f3e70f49504c9a12526cc6f697f6

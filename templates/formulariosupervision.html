@@ -1,0 +1,355 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactos Enviados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .container {
+            max-width: 1200px;  /* Aumenta el ancho máximo para pantallas grandes */
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 30px;  /* Aumenta el relleno para darle más espacio */
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-bar input {
+            width: 70%;  /* Reduce el ancho para dar espacio al botón */
+            padding: 15px;  /* Aumenta el padding para mejor apariencia */
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .search-bar button {
+            padding: 15px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            margin-left: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .search-bar button:hover {
+            background: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th, table td {
+            padding: 20px;  /* Aumenta el padding para mejorar la legibilidad */
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background: #f4f4f4;
+            font-weight: bold;
+        }
+
+        table tr:hover {
+            background: #f9f9f9;
+        }
+
+        .no-data {
+            text-align: center;
+            color: #999;
+        }
+
+        /* Ajustes para dispositivos móviles */
+        @media (max-width: 768px) {
+            .container {
+                max-width: 95%;  /* Aumenta el ancho para dispositivos móviles */
+                padding: 20px;  /* Reduce el padding en móviles */
+            }
+
+            .search-bar {
+                flex-direction: column;  /* Coloca la barra de búsqueda en columna */
+                align-items: stretch;
+            }
+
+            .search-bar input {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .search-bar button {
+                width: 100%;
+            }
+
+            table th, table td {
+                padding: 15px;  /* Reduce el padding para que la tabla sea más compacta en móviles */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Contactos Enviados</h1>
+    
+    <!-- Barra de búsqueda -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Buscar por nombre, teléfono o correo">
+        <button onclick="searchTable()">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+
+    <!-- Tabla de contactos -->
+    <table id="contactsTable">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Correo Electrónico</th>
+                <th>Mensaje</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if contactos %}
+                {% for contacto in contactos %}
+                    <tr>
+                        <td>{{ contacto.contacto_nombre }}</td>
+                        <td>{{ contacto.contacto_telefono }}</td>
+                        <td>{{ contacto.contacto_email }}</td>
+                        <td>{{ contacto.contacto_mensaje }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4" class="no-data">No hay contactos registrados</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Función para filtrar la tabla
+    function searchTable() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toLowerCase();
+        table = document.getElementById("contactsTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 1; i < tr.length; i++) {
+            tr[i].style.display = "none";
+            td = tr[i].getElementsByTagName("td");
+            for (var j = 0; j < td.length; j++) {
+                if (td[j]) {
+                    txtValue = td[j].textContent || td[j].innerText;
+                    if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                        break;
+                    }
+                }
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
+=======
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactos Enviados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .container {
+            max-width: 1200px;  /* Aumenta el ancho máximo para pantallas grandes */
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 30px;  /* Aumenta el relleno para darle más espacio */
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-bar input {
+            width: 70%;  /* Reduce el ancho para dar espacio al botón */
+            padding: 15px;  /* Aumenta el padding para mejor apariencia */
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .search-bar button {
+            padding: 15px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            margin-left: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .search-bar button:hover {
+            background: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th, table td {
+            padding: 20px;  /* Aumenta el padding para mejorar la legibilidad */
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background: #f4f4f4;
+            font-weight: bold;
+        }
+
+        table tr:hover {
+            background: #f9f9f9;
+        }
+
+        .no-data {
+            text-align: center;
+            color: #999;
+        }
+
+        /* Ajustes para dispositivos móviles */
+        @media (max-width: 768px) {
+            .container {
+                max-width: 95%;  /* Aumenta el ancho para dispositivos móviles */
+                padding: 20px;  /* Reduce el padding en móviles */
+            }
+
+            .search-bar {
+                flex-direction: column;  /* Coloca la barra de búsqueda en columna */
+                align-items: stretch;
+            }
+
+            .search-bar input {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .search-bar button {
+                width: 100%;
+            }
+
+            table th, table td {
+                padding: 15px;  /* Reduce el padding para que la tabla sea más compacta en móviles */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Contactos Enviados</h1>
+    
+    <!-- Barra de búsqueda -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Buscar por nombre, teléfono o correo">
+        <button onclick="searchTable()">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+
+    <!-- Tabla de contactos -->
+    <table id="contactsTable">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Correo Electrónico</th>
+                <th>Mensaje</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if contactos %}
+                {% for contacto in contactos %}
+                    <tr>
+                        <td>{{ contacto.contacto_nombre }}</td>
+                        <td>{{ contacto.contacto_telefono }}</td>
+                        <td>{{ contacto.contacto_email }}</td>
+                        <td>{{ contacto.contacto_mensaje }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4" class="no-data">No hay contactos registrados</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Función para filtrar la tabla
+    function searchTable() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toLowerCase();
+        table = document.getElementById("contactsTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 1; i < tr.length; i++) {
+            tr[i].style.display = "none";
+            td = tr[i].getElementsByTagName("td");
+            for (var j = 0; j < td.length; j++) {
+                if (td[j]) {
+                    txtValue = td[j].textContent || td[j].innerText;
+                    if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                        break;
+                    }
+                }
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
+>>>>>>> e744c4f819a1f3e70f49504c9a12526cc6f697f6

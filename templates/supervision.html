@@ -1,0 +1,723 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supervisión de Usuarios</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos Generales */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Barra de navegación */
+        .navbar {
+            background-color: #007BFF;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .navbar .profile-button {
+            background-color: #28a745;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .profile-button:hover {
+            background-color: #218838;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Barra de búsqueda */
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            width: 70%;
+            padding: 12px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 25px 0 0 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-bar button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 0 25px 25px 0;
+            padding: 12px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .search-bar button i {
+            font-size: 1.2em;
+        }
+
+        /* Tabla de usuarios */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+            margin-top: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        table th, table td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .show-details {
+            color: #007bff;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Contenedores de detalles */
+        .details-container {
+            display: flex;
+            gap: 15px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 15px;
+            margin-top: 20px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-container {
+            flex: 1;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 15px;
+        }
+
+        .section-container h3 {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        /* Botón de guardar */
+        .save-button {
+            background-color: #28a745;
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .save-button:hover {
+            background-color: #218838;
+        }
+
+        /* Inscrito y No inscrito */
+        .inscrito, .no-inscrito {
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .inscrito {
+            color: #155724;
+            background-color: #d4edda;
+        }
+
+        .no-inscrito {
+            color: #721c24;
+            background-color: #f8d7da;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .details-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Barra de navegación -->
+<div class="navbar">
+    <h1>Supervisión de Usuarios</h1>
+    <a href="{{ url_for('perfil') }}" class="profile-button">Volver al Perfil</a>
+    <a href="{{ url_for('formulariosupervision') }}">Ver Formularios Enviados</a>
+    <a href="{{ url_for('participacionesrecientes') }}" class="profile-button">Participaciones Recientes</a> <!-- Nuevo enlace -->
+</div>
+
+<div class="container">
+    <!-- Barra de búsqueda -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Buscar por nombre, teléfono o correo...">
+        <button onclick="searchTable()"><i class="fas fa-search"></i></button>
+    </div>
+
+    <!-- Tabla de usuarios -->
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>referido por</th>
+                <th>Saldo</th>
+                <th>Modificar</th>
+                <th>Ver más</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if usuarios %}
+                {% for usuario in usuarios %}
+                <tr>
+                    <td style="width: 10%;">{{ usuario.id }}</td>
+                    <td>{{ usuario.nombre }} {{ usuario.apellidos }}</td>
+                    <td>{{ usuario.movil }}</td>
+                    <td>{{ usuario.email }}</td>
+                    <td>{{ usuario.referido_por }}</td>
+                    <td>€{{ usuario.saldo }}</td>
+                    <td>
+                        <form action="{{ url_for('supervision') }}" method="POST">
+                            <input type="hidden" name="user_id" value="{{ usuario.id }}">
+                            <input type="number" name="saldo" value="{{ usuario.saldo }}" step="0.01" style="width: 80px;">
+                            <textarea name="historial_tareas" placeholder="Historial">{{ usuario.historial_tareas }}</textarea>
+                            <button type="submit" class="save-button">Actualizar</button>
+                        </form>
+                    </td>
+                    <td><span class="show-details" onclick="toggleDetails('{{ usuario.id }}')">Ver más</span></td>
+                </tr>
+                <!-- Fila desplegable con contenedores -->
+                <tr id="details-{{ usuario.id }}" class="details-row" style="display: none;">
+                    <td colspan="7">
+                        <div class="details-container">
+                            <!-- Contenedor de Información del Usuario -->
+                            <div class="section-container">
+                                <h3>Información del Usuario</h3>
+                                <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
+                                <p><strong>Teléfono:</strong> {{ usuario.movil }}</p>
+                                <p><strong>Cumpleaños:</strong> {{ usuario.cumpleanos }}</p>
+                                <p><strong>Edad:</strong> {{ usuario.edad }}</p>
+                                <p><strong>Nacionalidad:</strong> {{ usuario.signo_zodiaco }}</p>
+                                <p><strong>Motivo Crear Contenido:</strong> {{ usuario.motivo_crear_contenido }}</p>
+                                <p><strong>Tipo de Contenido:</strong> {{ usuario.tipo_contenido }}</p>
+                                <p><strong>Tiempo Dedicado a Grabar:</strong> {{ usuario.tiempo_grabar }}</p>
+                                <p><strong>Motivación:</strong> {{ usuario.motivacion }}</p>
+                                <p><strong>Conexión con la Audiencia:</strong> {{ usuario.conexion_audiencia }}</p>
+                                
+                            </div>
+
+
+                            
+                                            
+                            
+                                                 
+
+                            
+
+                            <!-- Contenedor de Asignación de Código -->
+                            <div class="section-container">
+                                <h3>Asignar Código</h3>
+                                <form action="{{ url_for('asignar_codigo') }}" method="POST">
+                                    <input type="hidden" name="user_id" value="{{ usuario.id }}">
+                                    <input type="text" name="valor_influencers" placeholder="Código de Asignación" value="{{ usuario.valor_influencers }}">
+                                    <button class="save-button"> Asignar Código</button>
+                                </form>
+                            
+                            
+                            
+                                <h3>Redes Sociales</h3>
+                                <p><strong>YouTube:</strong> 
+                                    {% if usuario.youtube %}
+                                        <a href="{{ usuario.youtube }}" target="_blank">{{ usuario.youtube }}</a>
+                                    {% else %}
+                                        No disponible
+                                    {% endif %}
+                                </p>
+                                <p><strong>Instagram:</strong> 
+                                    {% if usuario.instagram %}
+                                        <a href="{{ usuario.instagram }}" target="_blank">{{ usuario.instagram }}</a>
+                                    {% else %}
+                                        No disponible
+                                    {% endif %}
+                                </p>
+                                <p><strong>TikTok:</strong> 
+                                    {% if usuario.tiktok %}
+                                        <a href="{{ usuario.tiktok }}" target="_blank">{{ usuario.tiktok }}</a>
+                                    {% else %}
+                                        No disponible
+                                    {% endif %}
+                                </p>
+                                <p><strong>Twitch:</strong> 
+                                    {% if usuario.twitch %}
+                                        <a href="{{ usuario.twitch }}" target="_blank">{{ usuario.twitch }}</a>
+                                    {% else %}
+                                        No disponible
+                                    {% endif %}
+                                </p>
+                            </div>
+
+                            <!-- Contenedor de Notas -->
+                            <div class="section-container">
+                                <h3>Notas</h3>
+                                <form action="{{ url_for('guardar_notas') }}" method="POST">
+                                    <input type="hidden" name="user_id" value="{{ usuario.id }}">
+                                    <textarea name="mensaje" rows="4" style="width: 100%;" placeholder="Escribe tus notas aquí...">{{ usuario.mensaje }}</textarea>
+                                    <button class="save-button">Guardar Notas</button>
+                                </form>
+                            </div>
+                            
+                            </div>
+  
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="7" class="no-data">No hay usuarios registrados</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Función para filtrar la tabla
+    function searchTable() {
+        const input = document.getElementById("searchInput").value.toLowerCase();
+        const rows = document.querySelectorAll("#userTable tbody tr");
+
+        rows.forEach(row => {
+            const rowText = row.innerText.toLowerCase();
+            row.style.display = rowText.includes(input) ? "" : "none";
+        });
+    }
+
+    // Mostrar y ocultar detalles de usuario
+    function toggleDetails(id) {
+        // Ocultar todos los detalles abiertos
+        document.querySelectorAll(".details-row").forEach(detail => {
+            if (detail.id !== 'details-' + id) {
+                detail.style.display = "none";
+            }
+        });
+
+        // Mostrar/ocultar el detalle seleccionado
+        const details = document.getElementById('details-' + id);
+        details.style.display = details.style.display === "none" || details.style.display === "" ? "table-row" : "none";
+    }
+</script>
+
+</body>
+</html>
+=======
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supervisión de Usuarios</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos Generales */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Barra de navegación */
+        .navbar {
+            background-color: #007BFF;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .navbar .profile-button {
+            background-color: #28a745;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .profile-button:hover {
+            background-color: #218838;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Barra de búsqueda */
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            width: 70%;
+            padding: 12px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 25px 0 0 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-bar button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 0 25px 25px 0;
+            padding: 12px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .search-bar button i {
+            font-size: 1.2em;
+        }
+
+        /* Tabla de usuarios */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+            margin-top: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        table th, table td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .show-details {
+            color: #007bff;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Contenedores de detalles */
+        .details-container {
+            display: flex;
+            gap: 15px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 15px;
+            margin-top: 20px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-container {
+            flex: 1;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 15px;
+        }
+
+        .section-container h3 {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        /* Botón de guardar */
+        .save-button {
+            background-color: #28a745;
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .save-button:hover {
+            background-color: #218838;
+        }
+
+        /* Inscrito y No inscrito */
+        .inscrito, .no-inscrito {
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .inscrito {
+            color: #155724;
+            background-color: #d4edda;
+        }
+
+        .no-inscrito {
+            color: #721c24;
+            background-color: #f8d7da;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .details-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Barra de navegación -->
+<div class="navbar">
+    <h1>Supervisión de Usuarios</h1>
+    <a href="{{ url_for('perfil') }}" class="profile-button">Volver al Perfil</a>
+    <a href="{{ url_for('formulariosupervision') }}">Ver Formularios Enviados</a>
+    <a href="{{ url_for('participacionesrecientes') }}" class="profile-button">Participaciones Recientes</a> <!-- Nuevo enlace -->
+</div>
+
+<div class="container">
+    <!-- Barra de búsqueda -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Buscar por nombre, teléfono o correo...">
+        <button onclick="searchTable()"><i class="fas fa-search"></i></button>
+    </div>
+
+    <!-- Tabla de usuarios -->
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>referido por</th>
+                <th>Saldo</th>
+                <th>Modificar</th>
+                <th>Ver más</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if usuarios %}
+                {% for usuario in usuarios %}
+                <tr>
+                    <td style="width: 10%;">{{ usuario.id }}</td>
+                    <td>{{ usuario.nombre }} {{ usuario.apellidos }}</td>
+                    <td>{{ usuario.movil }}</td>
+                    <td>{{ usuario.email }}</td>
+                    <td>{{ usuario.referido_por }}</td>
+                    <td>€{{ usuario.saldo }}</td>
+                    <td>
+                        <form action="{{ url_for('supervision') }}" method="POST">
+                            <input type="hidden" name="user_id" value="{{ usuario.id }}">
+                            <input type="number" name="saldo" value="{{ usuario.saldo }}" step="0.01" style="width: 80px;">
+                            <textarea name="historial_tareas" placeholder="Historial">{{ usuario.historial_tareas }}</textarea>
+                            <button type="submit" class="save-button">Actualizar</button>
+                        </form>
+                    </td>
+                    <td><span class="show-details" onclick="toggleDetails('{{ usuario.id }}')">Ver más</span></td>
+                </tr>
+                <!-- Fila desplegable con contenedores -->
+                <tr id="details-{{ usuario.id }}" class="details-row" style="display: none;">
+                    <td colspan="7">
+                        <div class="details-container">
+                            <!-- Contenedor de Información del Usuario -->
+                            <div class="section-container">
+                                <h3>Información del Usuario</h3>
+                                <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
+                                <p><strong>Teléfono:</strong> {{ usuario.movil }}</p>
+                                <p><strong>Cumpleaños:</strong> {{ usuario.cumpleanos }}</p>
+                                <p><strong>Edad:</strong> {{ usuario.edad }}</p>
+                                <p><strong>Nacionalidad:</strong> {{ usuario.signo_zodiaco }}</p>
+                                <p><strong>Motivo Crear Contenido:</strong> {{ usuario.motivo_crear_contenido }}</p>
+                                <p><strong>Tipo de Contenido:</strong> {{ usuario.tipo_contenido }}</p>
+                                <p><strong>Tiempo Dedicado a Grabar:</strong> {{ usuario.tiempo_grabar }}</p>
+                                <p><strong>Motivación:</strong> {{ usuario.motivacion }}</p>
+                                <p><strong>Conexión con la Audiencia:</strong> {{ usuario.conexion_audiencia }}</p>
+                                
+                            </div>
+
+
+                            
+                                            
+                            
+                                                 
+
+                            
+
+                            <!-- Contenedor de Asignación de Código -->
+                            <div class="section-container">
+                                <h3>Asignar Código</h3>
+                                <form action="{{ url_for('asignar_codigo') }}" method="POST">
+                                    <input type="hidden" name="user_id" value="{{ usuario.id }}">
+                                    <input type="text" name="valor_influencers" placeholder="Código de Asignación" value="{{ usuario.valor_influencers }}">
+                                    <button class="save-button"> Asignar Código</button>
+                                </form>
+                            
+                            
+                            
+                                <h3>Redes Sociales</h3>
+                                <p><strong>YouTube:</strong> 
+                                    {% if usuario.youtube %}
+                                        <a href="{{ usuario.youtube }}" target="_blank">{{ usuario.youtube }}</a>
+                                    {% else %}
+                                        No disponible
+                                    {% endif %}
+                                </p>
+                                <p><strong>Instagram:</strong> 
+                                    {% if usuario.instagram %}
+                                        <a href="{{ usuario.instagram }}" target="_blank">{{ usuario.instagram }}</a>
+                                    {% else %}
+                                        No disponible
+                                    {% endif %}
+                                </p>
+                                <p><strong>TikTok:</strong> 
+                                    {% if usuario.tiktok %}
+                                        <a href="{{ usuario.tiktok }}" target="_blank">{{ usuario.tiktok }}</a>
+                                    {% else %}
+                                        No disponible
+                                    {% endif %}
+                                </p>
+                                <p><strong>Twitch:</strong> 
+                                    {% if usuario.twitch %}
+                                        <a href="{{ usuario.twitch }}" target="_blank">{{ usuario.twitch }}</a>
+                                    {% else %}
+                                        No disponible
+                                    {% endif %}
+                                </p>
+                            </div>
+
+                            <!-- Contenedor de Notas -->
+                            <div class="section-container">
+                                <h3>Notas</h3>
+                                <form action="{{ url_for('guardar_notas') }}" method="POST">
+                                    <input type="hidden" name="user_id" value="{{ usuario.id }}">
+                                    <textarea name="mensaje" rows="4" style="width: 100%;" placeholder="Escribe tus notas aquí...">{{ usuario.mensaje }}</textarea>
+                                    <button class="save-button">Guardar Notas</button>
+                                </form>
+                            </div>
+                            
+                            </div>
+  
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="7" class="no-data">No hay usuarios registrados</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Función para filtrar la tabla
+    function searchTable() {
+        const input = document.getElementById("searchInput").value.toLowerCase();
+        const rows = document.querySelectorAll("#userTable tbody tr");
+
+        rows.forEach(row => {
+            const rowText = row.innerText.toLowerCase();
+            row.style.display = rowText.includes(input) ? "" : "none";
+        });
+    }
+
+    // Mostrar y ocultar detalles de usuario
+    function toggleDetails(id) {
+        // Ocultar todos los detalles abiertos
+        document.querySelectorAll(".details-row").forEach(detail => {
+            if (detail.id !== 'details-' + id) {
+                detail.style.display = "none";
+            }
+        });
+
+        // Mostrar/ocultar el detalle seleccionado
+        const details = document.getElementById('details-' + id);
+        details.style.display = details.style.display === "none" || details.style.display === "" ? "table-row" : "none";
+    }
+</script>
+
+</body>
+</html>
+>>>>>>> e744c4f819a1f3e70f49504c9a12526cc6f697f6
