@@ -131,6 +131,37 @@
             color: #00bfff;
             text-decoration: none;
         }
+         /* Estilos para dispositivos móviles */
+         @media (max-width: 768px) {
+            /* Cambiar a 2 columnas en pantallas medianas */
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cell {
+                position: relative;
+            }
+
+            .cell::before {
+                content: '';
+                display: block;
+                padding-top: 100%; /* Hace que la altura sea igual al ancho */
+            }
+
+            .cell > * {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Cambiar a 1 columna en pantallas pequeñas */
+            .container {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
     </style>
 </head>
 <body>
