@@ -335,9 +335,12 @@ def productores_loite():
 
 @app.route('/concursos')
 def concursos():
+    # Verificar si el usuario ha iniciado sesión
     if 'user_id' not in session:
         flash('Por favor, inicia sesión')
         return redirect(url_for('login'))
+    
+    # Si el usuario está autenticado, renderiza la página de concursos
     return render_template('concursos.html')
 
 
