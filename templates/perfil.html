@@ -36,12 +36,13 @@
             padding: 10px;
             background: linear-gradient(135deg, #00bfff, #1a73e8); /* Degradado igual al botón de ayuda */
             border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .bottom-buttons a {
             text-align: center;
             padding: 10px;
-            width: 33%;
+            flex: 1;
             color: white;
             text-decoration: none;
             background-color: transparent;
@@ -155,7 +156,42 @@
         footer p {
             margin: 0;
         }
+
+        /* Adaptación para dispositivos móviles */
+        @media (max-width: 768px) {
+            .bottom-buttons {
+                justify-content: center;
+                gap: 5px;
+            }
+
+            .bottom-buttons a {
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            .main-container {
+                padding: 20px;
+                margin: 20px auto;
+                max-width: 90%;
+            }
+
+            .social-media-form input {
+                font-size: 14px;
+            }
+
+            .futuristic-button {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+
+            .chat-button {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+        }
     </style>
+</head>
+<body>
 </head>
 <body>
     <!-- Logo -->
