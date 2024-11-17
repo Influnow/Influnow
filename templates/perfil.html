@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil de Usuario - Influnet</title>
+    <title>Perfil de Usuario - Influnow</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
         body {
@@ -15,17 +15,17 @@
             flex-direction: column;
             align-items: center;
         }
-
+    
         /* Logo */
         .logo {
             margin-top: 20px;
             text-align: center;
         }
-
+    
         .logo img {
             width: 100px; /* Ajuste de tamaño para móvil */
         }
-
+    
         /* Barra de navegación - Panel de Control */
         .bottom-buttons {
             display: flex;
@@ -38,7 +38,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-
+    
         .bottom-buttons a {
             text-align: center;
             padding: 8px;
@@ -50,50 +50,58 @@
             border-radius: 5px;
             transition: background-color 0.3s;
         }
-
+    
         .bottom-buttons a:hover {
             background-color: rgba(255, 255, 255, 0.2);
         }
-
+    
         .bottom-buttons a.active {
             background-color: #1a73e8;
             color: white;
         }
-
+    
         /* Contenedor principal */
         .main-container {
-            max-width: 90%; /* Ajuste de ancho en móviles */
-            margin: 20px auto;
+            width: 90%; /* Ajusta el ancho a un 90% de la pantalla */
+            max-width: 500px; /* Limita el ancho en pantallas grandes */
+            margin: 20px auto; /* Centrado horizontal */
             padding: 20px;
             background-color: #f2f2f2;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-
+    
         .main-container h1 {
             font-size: 24px;
             margin-bottom: 15px;
             color: #333;
         }
-
+    
         .main-container p {
             font-size: 16px;
-            color: #555;
+            color: #333;;
         }
-
+    
         /* Redes sociales */
         .social-media-form input {
-            width: 100%;
+            width: 100%; /* Ancho completo para adaptarse al contenedor */
             padding: 12px;
             margin-bottom: 10px;
             border-radius: 5px;
-            border: 1px solid #ccc;
+            border: 1px solid #c5eef7;;
             font-size: 14px;
+            box-sizing: border-box; /* Asegura que el padding no rompa el ancho del contenedor */
         }
-
+    
+        /* Ajuste de placeholder para dispositivos móviles */
+        .social-media-form input::placeholder {
+            font-size: 12px; /* Reduce el tamaño en móvil para que se vea completo */
+        }
+    
         .social-media-form button {
-            padding: 10px 20px;
+            width: 100%; /* Botón de ancho completo */
+            padding: 10px;
             background-color: #1a73e8;
             border: none;
             color: white;
@@ -102,29 +110,30 @@
             border-radius: 5px;
             transition: background-color 0.3s ease;
         }
-
+    
         .social-media-form button:hover {
             background-color: #ff0000;
         }
-
+    
         /* Botón futurista */
         .futuristic-button {
+            width: 100%; /* Botón de ancho completo */
             background: linear-gradient(90deg, #ff0000, #1a73e8);
             border: none;
             color: white;
-            padding: 10px 20px;
+            padding: 10px;
             font-size: 16px;
             border-radius: 30px;
             cursor: pointer;
             transition: background 0.5s, transform 0.3s ease;
             margin-top: 15px;
         }
-
+    
         .futuristic-button:hover {
             background: linear-gradient(90deg, #1a73e8, #ff0000);
             transform: scale(1.05);
         }
-
+    
         /* Botón "Solicita hablar con tu gestor" */
         .chat-button {
             position: fixed;
@@ -139,51 +148,57 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
-
+    
         .chat-button:hover {
             background-color: #1a73e8;
             transform: scale(1.1);
         }
-
+    
         /* Pie de página */
         footer {
+            width: 100%; /* Se asegura que el pie cubra todo el ancho */
             margin-top: 20px;
             background-color: #333;
             color: white;
             padding: 15px 0;
             text-align: center;
         }
-
+    
         footer p {
             margin: 0;
         }
-
+    
         /* Adaptación para dispositivos móviles */
         @media (max-width: 768px) {
             .bottom-buttons {
                 justify-content: space-around;
                 gap: 5px;
             }
-
+    
             .main-container {
                 padding: 15px;
             }
-
+    
             .social-media-form input {
-                font-size: 14px;
+                font-size: 14px; /* Ajusta el tamaño del texto */
             }
-
+    
+            .social-media-form input::placeholder {
+                font-size: 12px; /* Asegura que el placeholder se vea bien */
+            }
+    
             .futuristic-button {
                 font-size: 14px;
                 padding: 10px 15px;
             }
-
+    
             .chat-button {
                 font-size: 12px;
                 padding: 8px 10px;
             }
         }
     </style>
+    
 </head>
 <body>
 </head>

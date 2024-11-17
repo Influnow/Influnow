@@ -10,10 +10,10 @@
 
     <style>
         .container {
-            max-width: 1200px;  /* Aumenta el ancho máximo para pantallas grandes */
+            max-width: 1200px;
             margin: 40px auto;
             background: #ffffff;
-            padding: 30px;  /* Aumenta el relleno para darle más espacio */
+            padding: 30px;
             border-radius: 15px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
@@ -31,8 +31,8 @@
         }
 
         .search-bar input {
-            width: 70%;  /* Reduce el ancho para dar espacio al botón */
-            padding: 15px;  /* Aumenta el padding para mejor apariencia */
+            width: 70%;
+            padding: 15px;
             font-size: 1em;
             border: 1px solid #ddd;
             border-radius: 8px;
@@ -53,14 +53,20 @@
             background: #0056b3;
         }
 
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;  /* Permite el desplazamiento horizontal en pantallas pequeñas */
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
+            min-width: 600px;  /* Establece un ancho mínimo para la tabla */
         }
 
         table th, table td {
-            padding: 20px;  /* Aumenta el padding para mejorar la legibilidad */
+            padding: 20px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
@@ -82,12 +88,12 @@
         /* Ajustes para dispositivos móviles */
         @media (max-width: 768px) {
             .container {
-                max-width: 95%;  /* Aumenta el ancho para dispositivos móviles */
-                padding: 20px;  /* Reduce el padding en móviles */
+                max-width: 95%;
+                padding: 20px;
             }
 
             .search-bar {
-                flex-direction: column;  /* Coloca la barra de búsqueda en columna */
+                flex-direction: column;
                 align-items: stretch;
             }
 
@@ -101,7 +107,18 @@
             }
 
             table th, table td {
-                padding: 15px;  /* Reduce el padding para que la tabla sea más compacta en móviles */
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            table {
+                min-width: 100%;  /* Asegura que la tabla ocupe todo el ancho disponible */
+            }
+
+            table th, table td {
+                padding: 10px;
+                font-size: 0.9em;  /* Ajusta el tamaño de fuente para pantallas muy pequeñas */
             }
         }
     </style>
