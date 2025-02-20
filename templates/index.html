@@ -1,398 +1,424 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Ajusta la URL real de tu sitio -->
+    <link rel="canonical" href="https://www.influnow.com/" />
+
+    <!-- Open Graph para mejorar previews en redes sociales -->
+    <meta property="og:title" content="Influnow | Agencia de Influencers para Monetizar tus Redes Sociales">
+    <meta property="og:description" content="Únete a Influnow y empieza a ganar dinero con tus redes sociales. Conecta con marcas, participa en eventos y colabora con grandes empresas.">
+    <meta property="og:image" content="https://www.influnow.com/static/logo_influnet.jpg">
+    <meta property="og:url" content="https://www.influnow.com/">
+    <meta property="og:type" content="website">
+
+    <!-- Datos estructurados JSON-LD (Organization) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Influnow",
+      "url": "https://www.influnow.com",
+      "logo": "https://www.influnow.com/static/logo_influnet.jpg",
+      "description": "Agencia de Influencers para monetizar tus redes sociales",
+      "sameAs": [
+        "https://www.tiktok.com/@influnowoficial",
+        "https://www.instagram.com/influnowoficial"
+      ],
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "telephone": "+34XXXXXXXXX",
+        "contactType": "customer service"
+      }]
+    }
+    </script>
+
+    <!-- Título y meta tags -->
+    <title>Influnow | Agencia de Influencers para Monetizar tus Redes Sociales</title>
+    <meta name="description" content="Únete a Influnow y empieza a ganar dinero con tus redes sociales. Conecta con marcas, participa en eventos y colabora con grandes empresas.">
+    <meta name="keywords" content="influencers, agencia de influencers, monetización de redes sociales, colaboraciones con marcas">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Influnow Team">
+
+    <!-- Fonts e íconos -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <title>Influnow</title>
-    
+
     <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(to bottom, #f4f4f4, #e8e8e8);
-        }
+      /* == Tus estilos originales aquí == */
+      body {
+          font-family: 'Montserrat', sans-serif;
+          margin: 0;
+          padding: 0;
+          background: linear-gradient(to bottom, #f4f4f4, #e8e8e8);
+      }
 
-        header {
-            background-color: #ffffff;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
+      header {
+          background-color: #ffffff;
+          color: white;
+          padding: 20px 0;
+          text-align: center;
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
 
-        .logo {
-            width: 150px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
+      .logo {
+          width: 150px;
+          height: auto;
+          display: block;
+          margin: 0 auto;
+      }
 
-        nav {
-            background-color: #ffffff;
-            padding: 10px 0;
-        }
+      nav {
+          background-color: #ffffff;
+          padding: 10px 0;
+      }
 
-        .menu {
-            list-style-type: none;
-            padding: 0;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            max-width: 800px;
-            gap: 15px;
-        }
+      .menu {
+          list-style-type: none;
+          padding: 0;
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-between;
+          max-width: 800px;
+          gap: 15px;
+      }
 
-        .menu li {
-            margin: 0 10px;
-        }
+      .menu li {
+          margin: 0 10px;
+      }
 
-        .menu li a {
-            display: block;
-            color: #ffffff;
-            text-decoration: none;
-            padding: 10px 20px;
-            background: linear-gradient(to right, #007BFF, #00c6ff);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
+      .menu li a {
+          display: block;
+          color: #ffffff;
+          text-decoration: none;
+          padding: 10px 20px;
+          background: linear-gradient(to right, #007BFF, #00c6ff);
+          border-radius: 8px;
+          transition: all 0.3s ease;
+          text-align: center;
+      }
 
-        .menu li a:hover {
-            background: linear-gradient(to right, #0056b3, #007bbb);
-            transform: scale(1.05);
-        }
+      .menu li a:hover {
+          background: linear-gradient(to right, #0056b3, #007bbb);
+          transform: scale(1.05);
+      }
 
-        section {
-            padding: 40px 20px;
-            text-align: center;
-        }
+      section {
+          padding: 40px 20px;
+          text-align: center;
+      }
 
-        h1, h2 {
-            color: #333;
-            margin-bottom: 20px;
-        }
+      h1, h2 {
+          color: #333;
+          margin-bottom: 20px;
+      }
 
-        p {
-            max-width: 800px;
-            margin: 0 auto 20px;
-            text-align: left;
-            line-height: 1.8;
-        }
+      p {
+          max-width: 800px;
+          margin: 0 auto 20px;
+          text-align: left;
+          line-height: 1.8;
+      }
 
-        .box-container {
-            max-width: 800px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
+      .box-container {
+          max-width: 800px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 20px;
+      }
 
-        .box {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            text-align: left;
-            transition: transform 0.3s ease-in-out;
-        }
+      .box {
+          background-color: white;
+          padding: 30px;
+          border-radius: 10px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+          text-align: left;
+          transition: transform 0.3s ease-in-out;
+      }
 
-        .box:hover {
-            transform: translateY(-10px);
-        }
+      .box:hover {
+          transform: translateY(-10px);
+      }
 
-        form {
-        max-width: 500px; /* Reduce el tamaño máximo para una mejor alineación */
-        margin: 40px auto; /* Añade mayor espaciado superior e inferior */
-        text-align: left;
-        background-color: white;
-        padding: 40px; /* Aumenta el relleno interno para dar más espacio */
-        border-radius: 15px; /* Bordes más redondeados */
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra más suave */
-        border: 1px solid #e0e0e0; /* Añade un borde ligero para destacar */
-        }
+      form {
+          max-width: 500px; 
+          margin: 40px auto; 
+          text-align: left;
+          background-color: white;
+          padding: 40px; 
+          border-radius: 15px; 
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
+          border: 1px solid #e0e0e0; 
+      }
 
-        form label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
+      form label {
+          display: block;
+          margin-bottom: 10px;
+          font-weight: bold;
+      }
 
-        form input, form textarea {
-        width: 100%;
-        padding: 12px;
-        margin-bottom: 20px;
-        border: 1px solid #ddd; /* Cambia a un borde más claro */
-        border-radius: 8px;
-        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Añade sombra interna para un mejor efecto */
-        font-size: 1em;
-        }
+      form input, form textarea {
+          width: 100%;
+          padding: 12px;
+          margin-bottom: 20px;
+          border: 1px solid #ddd; 
+          border-radius: 8px;
+          box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); 
+          font-size: 1em;
+      }
 
-        form button {
-    background: linear-gradient(to right, #ff7e5f, #feb47b); /* Cambia el color del botón para hacerlo más atractivo */
-    color: white;
-    padding: 15px;
-    border: none;
-    border-radius: 10px; /* Aumenta la curvatura para una apariencia más moderna */
-    cursor: pointer;
-    width: 100%;
-    font-size: 1.2em;
-    transition: all 0.3s ease;
-}
-        form button:hover {
-            background: linear-gradient(to right, #e55337, #e03e00);
-            transform: translateY(-5px);
-        }
+      form button {
+          background: linear-gradient(to right, #ff7e5f, #feb47b); 
+          color: white;
+          padding: 15px;
+          border: none;
+          border-radius: 10px; 
+          cursor: pointer;
+          width: 100%;
+          font-size: 1.2em;
+          transition: all 0.3s ease;
+      }
 
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 40px;
-        }
+      form button:hover {
+          background: linear-gradient(to right, #e55337, #e03e00);
+          transform: translateY(-5px);
+      }
 
-        footer .social-icons {
-            margin: 20px 0;
-        }
+      footer {
+          background-color: #333;
+          color: white;
+          text-align: center;
+          padding: 30px 0;
+          margin-top: 40px;
+      }
 
-        footer .social-icons a {
-            color: white;
-            margin: 0 15px;
-            font-size: 1.5em;
-            transition: color 0.3s;
-        }
+      footer .social-icons {
+          margin: 20px 0;
+      }
 
-        footer .social-icons a:hover {
-            color: #007BFF;
-        }
+      footer .social-icons a {
+          color: white;
+          margin: 0 15px;
+          font-size: 1.5em;
+          transition: color 0.3s;
+      }
 
-        /* Estilo para INFLUNET */
-        .influnow {
-            font-weight: bold;
-        }
+      footer .social-icons a:hover {
+          color: #007BFF;
+      }
 
-        .influnow-black {
-            color: black;
-        }
+      .influnow {
+          font-weight: bold;
+      }
 
-        .influnow-blue {
-            color: blue;
-        }
-            @media (max-width: 768px) {
-            .menu {
-                flex-direction: column;
-                align-items: center;
-            }
-            .menu li {
-                margin-bottom: 10px;
-            }
-            .menu li a {
-                width: auto;
-                padding: 10px 15px;
-                font-size: 1em;
-            }
-            header {
-                padding: 15px 0;
-            }
-            section {
-                padding: 20px 15px;
-            }
-        }
-        .benefits-list {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    text-align: left;
-}
+      .influnow-black {
+          color: black;
+      }
 
-.benefits-list li {
-    margin-bottom: 15px;
-    line-height: 1.8;
-}
+      .influnow-blue {
+          color: blue;
+      }
 
-.benefits-list li strong {
-    color: #007BFF;
-}
+      @media (max-width: 768px) {
+          .menu {
+              flex-direction: column;
+              align-items: center;
+          }
+          .menu li {
+              margin-bottom: 10px;
+          }
+          .menu li a {
+              width: auto;
+              padding: 10px 15px;
+              font-size: 1em;
+          }
+          header {
+              padding: 15px 0;
+          }
+          section {
+              padding: 20px 15px;
+          }
+      }
 
-/* Estilo resaltado para el título principal */
-.highlight-title {
-        font-size: 2em; /* Tamaño de fuente para pantallas grandes */
-        font-weight: bold;
-        color: white;
-        background: linear-gradient(to right, #ff7e5f, #feb47b);
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        animation: pulse 1.5s infinite;
-    }
+      .benefits-list {
+          max-width: 800px;
+          margin: 20px auto;
+          padding: 20px;
+          background: #f9f9f9;
+          border-radius: 10px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+          text-align: left;
+      }
 
-    @keyframes pulse {
-        0%, 100% {
-            transform: scale(1);
-        }
-        50% {
-            transform: scale(1.03);
-        }
-    }
+      .benefits-list li {
+          margin-bottom: 15px;
+          line-height: 1.8;
+      }
 
-    /* Barra de decoración */
-    .decorative-bar {
-        background: linear-gradient(to right, #007BFF, #00c6ff);
-        height: 5px;
-        width: 100%;
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
+      .benefits-list li strong {
+          color: #007BFF;
+      }
 
-    /* Ajustes para dispositivos móviles */
-    @media (max-width: 768px) {
-        .highlight-title {
-            font-size: 1.5em; /* Tamaño de fuente reducido para pantallas móviles */
-            padding: 10px; /* Reducción del relleno interno */
-        }
+      .highlight-title {
+          font-size: 2em; 
+          font-weight: bold;
+          color: white;
+          background: linear-gradient(to right, #ff7e5f, #feb47b);
+          padding: 15px;
+          border-radius: 10px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+          animation: pulse 1.5s infinite;
+      }
 
-        .decorative-bar {
-            height: 4px; /* Ajuste del grosor de la barra de decoración */
-            margin-top: 15px;
-            margin-bottom: 15px;
-        }
-    }
-    /* Estilo para la ventana emergente de cookies */
-    .cookie-modal {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-color: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 20px;
-        text-align: center;
-        z-index: 10000;
-        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
-    }
+      @keyframes pulse {
+          0%, 100% {
+              transform: scale(1);
+          }
+          50% {
+              transform: scale(1.03);
+          }
+      }
 
-    .cookie-content {
-        max-width: 800px;
-        margin: 0 auto;
-    }
-    .cookie-modal .cookie-content p {
-    font-size: 12px; /* Ajusta el tamaño de la fuente según sea necesario */
-    line-height: 1.4; /* Ajusta la altura de línea para mejor legibilidad */
-}
+      .decorative-bar {
+          background: linear-gradient(to right, #007BFF, #00c6ff);
+          height: 5px;
+          width: 100%;
+          margin-top: 20px;
+          margin-bottom: 20px;
+      }
 
+      @media (max-width: 768px) {
+          .highlight-title {
+              font-size: 1.5em; 
+              padding: 10px; 
+          }
 
-    .cookie-btn {
-        background: linear-gradient(to right, #007BFF, #00c6ff);
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background 0.3s;
-        margin: 10px;
-    }
+          .decorative-bar {
+              height: 4px; 
+              margin-top: 15px;
+              margin-bottom: 15px;
+          }
+      }
 
-    .cookie-btn:hover {
-        background: linear-gradient(to right, #0056b3, #007bbb);
-    }
+      .cookie-modal {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background-color: rgba(0, 0, 0, 0.8);
+          color: white;
+          padding: 20px;
+          text-align: center;
+          z-index: 10000;
+          box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+      }
 
-    .decline-btn {
-        background: linear-gradient(to right, #ff5f5f, #ff9a9a);
-    }
+      .cookie-content {
+          max-width: 800px;
+          margin: 0 auto;
+      }
+      .cookie-modal .cookie-content p {
+          font-size: 12px; 
+          line-height: 1.4; 
+      }
 
-    .decline-btn:hover {
-        background: linear-gradient(to right, #e03e3e, #e55353);
-    }
+      .cookie-btn {
+          background: linear-gradient(to right, #007BFF, #00c6ff);
+          color: white;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background 0.3s;
+          margin: 10px;
+      }
 
-/* Estilos para móviles */
-@media (max-width: 768px) {
+      .cookie-btn:hover {
+          background: linear-gradient(to right, #0056b3, #007bbb);
+      }
 
-/* Ocultar el menú original y mostrar el botón hamburguesa */
-nav .menu {
-    display: none;
-}
+      .decline-btn {
+          background: linear-gradient(to right, #ff5f5f, #ff9a9a);
+      }
 
-.menu-toggle {
-    display: block;
-    position: absolute;
-    top: 25px;
-    right: 20px;
-    font-size: 1.8em;
-    cursor: pointer;
-    color: #333;
-    z-index: 1001;
-}
+      .decline-btn:hover {
+          background: linear-gradient(to right, #e03e3e, #e55353);
+      }
 
-/* Estilo del menú desplegable lateral */
-.menu {
-    /* Oculto por defecto */
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 70%;
-    max-width: 250px;
-    height: auto; /* Ajustar la altura automáticamente */
-    max-height: 100vh; /* No exceder la altura de la pantalla */
-    background-color: #ffffff;
-    overflow-y: auto;
-    padding-top: 60px;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-    z-index: 1000;
-}
+      @media (max-width: 768px) {
+          nav .menu {
+              display: none;
+          }
 
-/* Mostrar el menú cuando está activo */
-.menu.active {
-    display: flex;
-    flex-direction: column;
-    transform: translateX(0);
-}
+          .menu-toggle {
+              display: block;
+              position: absolute;
+              top: 25px;
+              right: 20px;
+              font-size: 1.8em;
+              cursor: pointer;
+              color: #333;
+              z-index: 1001;
+          }
 
-/* Estilos para los enlaces del menú en móviles */
-.menu li {
-    margin: 0;
-    width: 100%;
-}
+          .menu {
+              transform: translateX(-100%);
+              transition: transform 0.3s ease;
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 70%;
+              max-width: 250px;
+              height: auto; 
+              max-height: 100vh; 
+              background-color: #ffffff;
+              overflow-y: auto;
+              padding-top: 60px;
+              box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+              z-index: 1000;
+          }
 
-.menu li a {
-    display: block;
-    padding: 10px 15px; /* Reducir padding para hacer las celdas más pequeñas */
-    border-bottom: 1px solid #ddd;
-    background: none;
-    color: #333;
-    text-align: left;
-    font-size: 16px; /* Ajustar tamaño de fuente */
-}
+          .menu.active {
+              display: flex;
+              flex-direction: column;
+              transform: translateX(0);
+          }
 
-/* Ajustes al header */
-header {
-    position: relative;
-}
+          .menu li {
+              margin: 0;
+              width: 100%;
+          }
 
-/* Ajustes para el logo en móviles */
-.logo {
-    width: 120px;
-    margin-left: 20px;
-}
-}
+          .menu li a {
+              display: block;
+              padding: 10px 15px; 
+              border-bottom: 1px solid #ddd;
+              background: none;
+              color: #333;
+              text-align: left;
+              font-size: 16px; 
+          }
 
-        
+          header {
+              position: relative;
+          }
+
+          .logo {
+              width: 120px;
+              margin-left: 20px;
+          }
+      }
     </style>
 </head>
 <body>
     <header>
-        <img src="{{ url_for('static', filename='logo_influnet.jpg') }}" alt="Logo" class="logo">
+        <!-- ALT más descriptivo -->
+        <img src="{{ url_for('static', filename='logo_influnet.jpg') }}" alt="Influnow - Agencia de Influencers" class="logo">
         <nav>
             <!-- Botón de menú hamburguesa para móviles -->
             <div class="menu-toggle" id="menu-toggle">
@@ -410,35 +436,34 @@ header {
     </header>
 
     <section id="inicio">
-        <div class="decorative-bar"></div> <!-- Barra de decoración -->
+        <div class="decorative-bar"></div>
         <h1 class="highlight-title">¡Únete a Influnow y Empieza a Ganar con las Redes Sociales!</h1>
         <p>¿Eres un influencer en busca de nuevas oportunidades para hacer crecer tu perfil y ganar dinero a través de tus redes? ¡Estás en el lugar correcto!</p>
         <p>En <span class="influnow"><span class="influnow-black">INFLU</span><span class="influnow-blue">NOW</span></span> nos dedicamos a ayudarte a dar el siguiente gran paso en tu carrera en redes sociales. Y lo mejor de todo: ¡COMPLETAMENTE GRATIS Y SIN COMPROMISOS!</p>
-        <div class="decorative-bar"></div> <!-- Barra de decoración -->
+        <div class="decorative-bar"></div>
     </section>
 
-        <div class="box-container">
-            <div class="box">
-                <strong class="emoticon">🎤 Eventos Únicos:</strong>
-                <p>Participa en eventos emocionantes como conciertos, espectáculos de baile, monólogos, campañas de publicidad, y reuniones de contacto con las marcas. Estas oportunidades no solo te permitirán brillar, sino también conectar con una audiencia más amplia.</p>
-            </div>
-
-            <div class="box">
-                <strong class="emoticon">💰 Campañas y Colaboraciones de Pago:</strong>
-                <p>Te ayudamos a crear campañas con marcas que se alinean con tu estilo y valores. Ya sea a través de colaboraciones de pago o a través de campañas de publicidad, te garantizamos que cada paso que des será rentable y significativo.</p>
-            </div>
-
-            <div class="box">
-                <strong class="emoticon">🌍 todo tipo de colaboraciones:</strong>
-                <p>Hemos realizado colaboraciones  en más de 17 países, en INFLUNOW hemos fortalecido nuestra posición como una de las agencias líderes del sector. Nuestra red internacional nos capacita para conectar a influencers y marcas a nivel global, nacional y provincial  generando oportunidades únicas y enriquecedoras.</p>
-            </div>
-
-            <div class="box">
-                <strong class="emoticon">🎁 Sorteos:</strong>
-                <p>Genera contenido y gana dinero y/o productos a través de nuestros sorteos.</p>
-            </div>
+    <div class="box-container">
+        <div class="box">
+            <strong class="emoticon">🎤 Eventos Únicos:</strong>
+            <p>Participa en eventos emocionantes como conciertos, espectáculos de baile, monólogos, campañas de publicidad, y reuniones de contacto con las marcas. Estas oportunidades no solo te permitirán brillar, sino también conectar con una audiencia más amplia.</p>
         </div>
-    </section>
+
+        <div class="box">
+            <strong class="emoticon">💰 Campañas y Colaboraciones de Pago:</strong>
+            <p>Te ayudamos a crear campañas con marcas que se alinean con tu estilo y valores. Ya sea a través de colaboraciones de pago o a través de campañas de publicidad, te garantizamos que cada paso que des será rentable y significativo.</p>
+        </div>
+
+        <div class="box">
+            <strong class="emoticon">🌍 todo tipo de colaboraciones:</strong>
+            <p>Hemos realizado colaboraciones en más de 17 países, en INFLUNOW hemos fortalecido nuestra posición como una de las agencias líderes del sector. Nuestra red internacional nos capacita para conectar a influencers y marcas a nivel global, nacional y provincial generando oportunidades únicas y enriquecedoras.</p>
+        </div>
+
+        <div class="box">
+            <strong class="emoticon">🎁 Sorteos:</strong>
+            <p>Genera contenido y gana dinero y/o productos a través de nuestros sorteos.</p>
+        </div>
+    </div>
 
     <section id="servicios">
         <h2>Servicios Personalizados</h2>
@@ -481,11 +506,11 @@ header {
 
         <p>Ser parte de <span class="influnow"><span class="influnow-black">INFLU</span><span class="influnow-blue">NOW</span></span> significa tener acceso a un portafolio de colaboraciones impresionante y diverso. Estamos comprometidos en ayudarte a crecer, conectar y triunfar en el competitivo mundo de las redes sociales. No importa si estás dando tus primeros pasos o si ya tienes experiencia; con nosotros, siempre tendrás la oportunidad de trabajar con marcas líderes y de participar en proyectos que realmente hacen la diferencia.</p>
 
-        <p>Únete a  <span class="influnow"><span class="influnow-black">INFLU</span><span class="influnow-blue">NOW</span></span> y descubre cómo podemos ayudarte a alcanzar nuevas alturas, rodeado de los mejores en la industria. ¡El éxito está a solo un paso de distancia!</p>
+        <p>Únete a <span class="influnow"><span class="influnow-black">INFLU</span><span class="influnow-blue">NOW</span></span> y descubre cómo podemos ayudarte a alcanzar nuevas alturas, rodeado de los mejores en la industria. ¡El éxito está a solo un paso de distancia!</p>
     </section>
 
     <section id="contacto">
-        <div class="decorative-bar"></div> <!-- Barra de decoración -->
+        <div class="decorative-bar"></div>
         <h2>Formulario de Contacto</h2>
         <form action="{{ url_for('submit_contact') }}" method="POST">
             <label for="contacto_nombre">Nombre:</label>
@@ -499,39 +524,35 @@ header {
     
             <label for="contacto_mensaje">Cuéntanos un poco sobre ti:</label>
             <textarea id="contacto_mensaje" name="contacto_mensaje" required></textarea>
-
     
             <button type="submit">Enviar</button>
         </form>
-        <div class="decorative-bar"></div> <!-- Barra de decoración -->
+        <div class="decorative-bar"></div>
     </section>
     {% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    <ul>
-      {% for category, message in messages %}
-        <li class="{{ category }}">{{ message }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
-
+      {% if messages %}
+        <ul>
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
 
     <footer>
         <p>&copy; 2024 <span class="influnow"><span class="influnow-black">INFLU</span><span class="influnow-blue">NOW</span></span>. Todos los derechos reservados.</p>
         <div class="social-icons">
             <a href="https://www.tiktok.com/@influnowoficial" target="_blank"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.instagram.com/influnowoficial" target="_blank"><i class="fab fa-instagram"></i></a>        
+            <a href="https://www.instagram.com/influnowoficial" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
         <div class="button-container">
             <a href="{{ url_for('avisolegal') }}" class="btn-avisolegal">Aviso Legal</a>
         </div>
-        
-        
     </footer>
 
     <div id="cookieConsent" class="cookie-modal">
         <div class="cookie-content">
-            <p>Este sitio web utiliza cookies únicamente con fines técnicos y de personalización de la navegación. No utilizamos cookies para recopilar información personal de los usuarios ni para fines publicitarios. Los usuarios pueden rechazar el uso de cookies mediante la configuración de su navegador o utilizando las opciones de rechazo de cookies disponibles en el sitio web. En el caso de aceptar las cookies, Influnow no empleará estos datos para fines adicionales, ni se compartirán con terceros. </p>
+            <p>Este sitio web utiliza cookies únicamente con fines técnicos y de personalización de la navegación. No utilizamos cookies para recopilar información personal de los usuarios ni para fines publicitarios. Los usuarios pueden rechazar el uso de cookies mediante la configuración de su navegador o utilizando las opciones de rechazo de cookies disponibles en el sitio web. En el caso de aceptar las cookies, Influnow no empleará estos datos para fines adicionales, ni se compartirán con terceros.</p>
             <button id="acceptCookies" class="cookie-btn">Aceptar</button>
             <button id="declineCookies" class="cookie-btn decline-btn">No acepto</button>
         </div>
@@ -576,6 +597,5 @@ header {
             });
         });
     </script>
-    
 </body>
 </html>

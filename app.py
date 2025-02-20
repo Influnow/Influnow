@@ -35,6 +35,7 @@ def es_usuario_administrador(email):
     return False
 
 
+
 # Página index.html
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -239,6 +240,68 @@ def actualizar_redes_sociales(user_id):
     flash('Redes sociales actualizadas correctamente')
     return redirect(url_for('supervision'))
 
+@app.route('/registro_corte_de_borja', methods=['POST'])
+def registro_corte_de_borja():
+    user_id = session.get('user_id')  # O recibirlo desde el formulario
+    if not user_id:
+        return "Error: Usuario no autenticado", 400
+
+    # Buscar participación existente o crear una nueva
+    participacion = Participacion.query.filter_by(user_id=user_id).first()
+    if not participacion:
+        participacion = Participacion(user_id=user_id)
+
+    # Procesar la participación
+    participacion.participacion_uno = request.form.get('participacion_uno', "")
+
+    
+
+    db.session.add(participacion)
+    db.session.commit()
+
+    flash("¡Participación registrada correctamente para Corte de Borja!")
+    return redirect(url_for('tiktok'))
+
+
+@app.route('/registro_vuela_libre', methods=['POST'])
+def registro_vuela_libre():
+    user_id = session.get('user_id')
+    if not user_id:
+        return "Error: Usuario no autenticado", 400
+
+    # Procesar participación para Vuela Libre
+    participacion = Participacion.query.filter_by(user_id=user_id).first()
+    if not participacion:
+        participacion = Participacion(user_id=user_id)
+
+    participacion.participacion_dos = request.form.get('participacion_dos', "")
+
+    db.session.add(participacion)
+    db.session.commit()
+
+    flash("¡Participación registrada correctamente en Vuela Libre!")
+    return redirect(url_for('tiktok'))
+
+
+@app.route('/registro_productores_loite', methods=['POST'])
+def registro_productores_loite():
+    user_id = session.get('user_id')
+    if not user_id:
+        return "Error: Usuario no autenticado", 400
+
+    # Procesar participación para Productores Loite
+    participacion = Participacion.query.filter_by(user_id=user_id).first()
+    if not participacion:
+        participacion = Participacion(user_id=user_id)
+
+    participacion.participacion_tres = request.form.get('participacion_tres', "")
+
+
+    db.session.add(participacion)
+    db.session.commit()
+
+    flash("¡Participación registrada correctamente en Productores Loite!")
+    return redirect(url_for('tiktok'))
 
 # Página de saldo
 @app.route('/saldo')
@@ -420,26 +483,7 @@ def formulariosupervision():
         return redirect(url_for('login'))
 
 
-@app.route('/registro_participacion', methods=['POST'])
-def registro_participacion():
-    actividad = request.form.get('actividad')
-    user_id = session.get('user_id')  # Obtener el user_id directamente desde la sesión
 
-    # Verificar si user_id está en la sesión
-    if not user_id:
-        return "Error: user_id no proporcionado", 400
-
-    participacion = Participacion.query.filter_by(user_id=user_id).first()
-    if not participacion:
-        participacion = Participacion(user_id=user_id)
-
-    # Asigna el valor al campo correspondiente según la actividad
-    if actividad == 'corte_de_borja':
-        participacion.participacion_uno = request.form.get('participacion_uno')
-    elif actividad == 'vuela_libre':
-        participacion.participacion_dos = request.form.get('participacion_dos')
-    elif actividad == 'productores_loite':
-        participacion.participacion_tres = request.form.get('participacion_tres')
 
     db.session.add(participacion)
     db.session.commit()
@@ -453,9 +497,12 @@ def link_a_condiciones():
     return render_template('link_a_condiciones.html')
 
 @app.route('/participacionesrecientes')
-def participacionesrecientes():
-    participaciones = Participacion.query.all()
+def participaciones_recientes():
+    # Consulta las participaciones de la base de datos
+    participaciones = Participacion.query.join(User, User.id == Participacion.user_id).all()
+
     return render_template('participacionesrecientes.html', participaciones=participaciones)
+
 
 @app.route('/guardar_notas', methods=['POST'])
 def guardar_notas():

@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# Redirigir todo a HTTPS (si tienes SSL configurado)
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Enviar todas las solicitudes al archivo wsgi.py
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ wsgi.py [L]

@@ -180,7 +180,8 @@
 
             <p>Con esta información, ¡construiremos una conexión única entre tú, tu comunidad y nuestra marca, logrando que este proyecto sea un éxito para todos! 🛫✨</p>
 
-            <form id="formulario" action="/registro_participacion" method="POST">
+            <form id="formulario" action="/registro_vuela_libre" method="POST">
+            
                 <input type="hidden" name="actividad" value="vuela_libre">
                 <input type="hidden" name="user_id" value="{{ user_id }}">  <!-- Asegúrate de pasar el ID del usuario -->
                 <input type="hidden" name="redirect_url" value="{{ url_for('corte_de_borja') }}">
