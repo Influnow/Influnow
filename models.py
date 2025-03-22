@@ -46,11 +46,10 @@ class Participacion(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    participacion_uno = db.Column(db.Text)  # Texto libre para Corte de Borja
-    participacion_dos = db.Column(db.Text)  # Texto libre para Vuela Libre
-    participacion_tres = db.Column(db.Text)  # Texto libre para Productores Loite
+    participacion_uno = db.Column(db.Text, nullable=True)  # Texto libre para Corte de Borja
+    participacion_dos = db.Column(db.Text, nullable=True)  # Texto libre para Vuela Libre
+    participacion_tres = db.Column(db.Text, nullable=True)  # Texto libre para Productores Loite
 
-    # Relación con el modelo User (esto permite acceder a los datos del usuario directamente desde Participacion)
     user = relationship('User', backref='participaciones')
 
 
