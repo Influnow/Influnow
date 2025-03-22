@@ -242,19 +242,17 @@ def actualizar_redes_sociales(user_id):
 
 @app.route('/registro_corte_de_borja', methods=['POST'])
 def registro_corte_de_borja():
-    user_id = session.get('user_id')  # O recibirlo desde el formulario
-    if not user_id:
-        return "Error: Usuario no autenticado", 400
+    if 'user_id' not in session:
+        flash("Debes iniciar sesión para participar.")
+        return redirect(url_for('login'))
 
-    # Buscar participación existente o crear una nueva
+    user_id = session['user_id']
+
     participacion = Participacion.query.filter_by(user_id=user_id).first()
     if not participacion:
         participacion = Participacion(user_id=user_id)
 
-    # Procesar la participación
     participacion.participacion_uno = request.form.get('participacion_uno', "")
-
-    
 
     db.session.add(participacion)
     db.session.commit()
@@ -262,14 +260,14 @@ def registro_corte_de_borja():
     flash("¡Participación registrada correctamente para Corte de Borja!")
     return redirect(url_for('tiktok'))
 
-
 @app.route('/registro_vuela_libre', methods=['POST'])
 def registro_vuela_libre():
-    user_id = session.get('user_id')
-    if not user_id:
-        return "Error: Usuario no autenticado", 400
+    if 'user_id' not in session:
+        flash("Debes iniciar sesión para participar.")
+        return redirect(url_for('login'))
 
-    # Procesar participación para Vuela Libre
+    user_id = session['user_id']
+
     participacion = Participacion.query.filter_by(user_id=user_id).first()
     if not participacion:
         participacion = Participacion(user_id=user_id)
@@ -282,20 +280,19 @@ def registro_vuela_libre():
     flash("¡Participación registrada correctamente en Vuela Libre!")
     return redirect(url_for('tiktok'))
 
-
 @app.route('/registro_productores_loite', methods=['POST'])
 def registro_productores_loite():
-    user_id = session.get('user_id')
-    if not user_id:
-        return "Error: Usuario no autenticado", 400
+    if 'user_id' not in session:
+        flash("Debes iniciar sesión para participar.")
+        return redirect(url_for('login'))
 
-    # Procesar participación para Productores Loite
+    user_id = session['user_id']
+
     participacion = Participacion.query.filter_by(user_id=user_id).first()
     if not participacion:
         participacion = Participacion(user_id=user_id)
 
     participacion.participacion_tres = request.form.get('participacion_tres', "")
-
 
     db.session.add(participacion)
     db.session.commit()
